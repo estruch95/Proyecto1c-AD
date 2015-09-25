@@ -61,8 +61,8 @@ public class FuncionesImpl {
 		return true;
 	}
 	
-	public int buscarPalabra(File fichero, boolean primera){
-		//Este método en el caso de que devuelva -1, significa que no se ha encontrado el fichero donde queremos buscar la palabra
+	public int buscarPalabra(File fichero, String palabra, boolean primera){
+		
 		
 		return 5;
 	}
