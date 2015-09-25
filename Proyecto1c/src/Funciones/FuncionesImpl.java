@@ -15,11 +15,11 @@ public class FuncionesImpl {
 	
 	public FuncionesImpl(){
 		//DECLARACIÓN DE 2 FICHEROS VACIOS
-		f1 = new File("Fichero1");
-		f2 = new File("Fichero2");
+		
+		f1 = new File("fichero1.txt");
+		f2 = new File("fichero2.txt");
 		
 		this.compararContenido(f1, f2);
-		
 	}
 	
 	
@@ -30,15 +30,28 @@ public class FuncionesImpl {
 			FileReader fr1 = new FileReader(f1);
 			FileReader fr2 = new FileReader(f2);
 			
+			
 			BufferedReader bf1 = new BufferedReader(fr1);
 			BufferedReader bf2 = new BufferedReader(fr2);
 			
-			while ((bf1.readLine()!=null) && (bf2.readLine()!=null) && iguales==true) {
-				 
-				  if (bf1.readLine().equals(bf2.readLine())==false){
+			String cadena1, cadena2;
+			
+			cadena1 = bf1.readLine();
+			cadena2 = bf2.readLine();
+			
+			while ((cadena1!=null) && (cadena2!=null) && iguales==true) {
+				//COMPROBAMOS QUE LAS LINEAS NO SON IGUALES
+				  if (cadena1.equals(cadena2)==false){
 					  	iguales = false;
+					  	System.out.println("Ficheros no iguales.");
 				  		return false;
 				 } 
+				  else{
+					  System.out.println("Ficheros iguales.");
+				  }
+				  //SEGUIMOS LEYENDO
+				  cadena1=bf1.readLine();
+				  cadena2=bf2.readLine();
 			}
 		}
 		catch(IOException error){
