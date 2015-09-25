@@ -19,7 +19,8 @@ public class FuncionesImpl {
 		f1 = new File("fichero1.txt");
 		f2 = new File("fichero2.txt");
 		
-		this.compararContenido(f1, f2);
+		//this.compararContenido(f1, f2);
+		this.buscarPalabra(f2, "Hola", true);
 	}
 	
 	
@@ -61,8 +62,27 @@ public class FuncionesImpl {
 		return true;
 	}
 	
-	public int buscarPalabra(File fichero, String palabra, boolean primera){
+	public int buscarPalabra(File fichero, String palabra, boolean boleano){
 		
+		try{
+			FileReader fr1 = new FileReader(f1);
+			BufferedReader bf1 = new BufferedReader(fr1);
+			
+			String linea = bf1.readLine();
+			
+			while(linea!=null){
+	            System.out.println(linea);
+	            
+	            if(linea.equals(palabra)==true){
+	            	System.out.println(linea+" - Palabra encontrada.");
+	            	break;
+	            }
+	            linea = bf1.readLine();
+			}
+		}
+		catch(IOException error){
+			System.err.println("Error al encontrar la palabra");
+		}
 		
 		return 5;
 	}
