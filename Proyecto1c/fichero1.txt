@@ -1,6 +1,7 @@
-Fichero1
-DAM2
 dam2
-Hola
+hola
+que
+claro
+desarrollo
 dam2
-aa
+dam2

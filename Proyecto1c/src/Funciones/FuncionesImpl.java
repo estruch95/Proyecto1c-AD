@@ -2,11 +2,9 @@ package Funciones;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 public class FuncionesImpl {
 
@@ -19,7 +17,7 @@ public class FuncionesImpl {
 		f2 = new File("fichero2.txt");
 		
 		//this.compararContenido(f1, f2);
-		this.buscarPalabra(f1, "uno", true);
+		this.buscarPalabra(f1, "dam2", false);
 	}
 	
 	
@@ -37,7 +35,7 @@ public class FuncionesImpl {
 			cadena2 = bf2.readLine();
 			
 			while ((cadena1!=null) && (cadena2!=null) && iguales==true) {
-				//Compración de si ambas lineas son iguales o no
+				//Comprobación de si ambas lineas son iguales o no
 				
 				  if (cadena1.equals(cadena2)==true){
 					//Si las dos lineas coinciden y son iguales seguimos leyendo para comprobar
@@ -71,6 +69,9 @@ public class FuncionesImpl {
 		
 		String cadena=null;
 		boolean palabraEncontrada=false;
+		int contadorLineas=0;
+		ArrayList<String> lineas = new ArrayList<String>();
+		
 		try{
 			
 			if(fichero.exists()==false){
@@ -80,15 +81,19 @@ public class FuncionesImpl {
 			else{
 				
 				FileReader fr1 = new FileReader(fichero);
+				@SuppressWarnings("resource")
 				BufferedReader bf1 = new BufferedReader(fr1);
 				
 				cadena = bf1.readLine();
 				
 				while(cadena!=null){
+					contadorLineas++;
 					
 		            if(cadena.equals(palabra)==true){
 		            	palabraEncontrada=true;
-		            	break;
+		            	System.out.println("Se ha encontrado la palabra '"+cadena+"' en la linea: "+contadorLineas);
+		            	lineas.add(String.valueOf(contadorLineas));
+		            	cadena = bf1.readLine();
 		            }
 		            else{
 		            	cadena = bf1.readLine();
@@ -100,11 +105,14 @@ public class FuncionesImpl {
 			System.err.println("Error al encontrar la palabra");
 		}
 		
-		if(palabraEncontrada==true){
-			System.out.println("Se ha encontrado la palabra: "+palabra);
+		if (palabraEncontrada==true && boleano==true){
+			System.out.println("Primera palabra encontrada en la linea: "+lineas.get(0));
 		}
-		else{
-			System.out.println("No se ha encontrado la palabra: "+palabra);
+		else if (palabraEncontrada==true && boleano==false) {
+			System.out.println("Ultima palabra encontrada en la linea: "+lineas.get(lineas.size()-1));
+		}
+		else {
+			System.out.println("No se ha encontrado la palabra en ninguna linea. ");
 		}
 		
 		return 5;
