@@ -17,8 +17,12 @@ public class FuncionesImpl {
 		f2 = new File("fichero2.txt");
 		
 		//METODOS QUE EJECUTARAN LAS FUNCIONES
-		//this.compararContenido(f1, f2);
-		this.buscarPalabra(f1, "dam2", false);
+		
+		this.compararContenido(f1, f2);
+		int resultado = this.buscarPalabra(f1, "dam2", true);
+		
+		//Mostramos por consola el resultado
+		System.out.println(resultado);
 	}
 	
 	
@@ -63,6 +67,7 @@ public class FuncionesImpl {
 			System.out.println("Ficheros no iguales");
 		}
 		
+		//En caso de ser iguales devolvemos true por defecto
 		return true;
 	}
 	
@@ -109,6 +114,8 @@ public class FuncionesImpl {
 		            	cadena = bf1.readLine();
 		            } 
 				}
+				//Insertamos un salto de linea para mostrar la información claramente al usuario
+				System.out.println("\n");
 			}
 		}
 		catch(IOException error){
@@ -118,17 +125,17 @@ public class FuncionesImpl {
 		
 		//Condicionamos los resultados para mostrar por consola
 		if (palabraEncontrada==true && boleano==true){
-			//System.out.println("Primera palabra encontrada en la linea: "+lineas.get(0));
+			System.out.println("Primera palabra encontrada en la linea: "+lineas.get(0));
 			return Integer.parseInt(lineas.get(0));
 		}
 		else if (palabraEncontrada==true && boleano==false) {
-			//System.out.println("Ultima palabra encontrada en la linea: "+lineas.get(lineas.size()-1));
+			System.out.println("Ultima palabra encontrada en la linea: "+lineas.get(lineas.size()-1));
 			return Integer.parseInt(lineas.get(lineas.size()-1));
 		}
 		else {
+			//Si no se encuentra la palabra, mostramos por consola e informamos al usuario
 			System.out.println("No se ha encontrado la palabra en ninguna linea. ");
-		}
-		
-		return 5;
+			return -1;
+		}	
 	}
 }
